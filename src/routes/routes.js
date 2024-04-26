@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const File = require('../models/file');
 const multer = require('multer');
-const upload = multer({ dest: '../../uploads/' }); // Destination folder for uploaded files
+const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded files
 
 
 router.post('/fileanalyse', upload.single('upfile'), async (req, res) => {
