@@ -3,12 +3,12 @@ var cors = require('cors');
 require('dotenv').config()
 
 var app = express();
-const appRoutes = require('./src/routes/routes');
+const fileRoutes = require('./src/routes/routes');
 
-// mongo 
-const DATA_BASE_URI = process.env;
+// database 
 const mongoose = require('mongoose');
-mongoose.connect(DATA_BASE_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+const DATABASE_URI = process.env.MONGO_URI;
+mongoose.connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
   console.log('Database connection successful');
 })
   .catch((err) => {
@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
 });
 
 // routes
-app.use('/api', appRoutes);
+app.use('/api', fileRoutes);
 
 
 const port = process.env.PORT || 8001;
